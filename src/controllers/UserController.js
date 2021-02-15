@@ -19,7 +19,7 @@ module.exports = {
         return res.json(user);
       }
       return res.status(400).json({
-        message: "email/user already exists! Do you want to login?",
+        message: "E-Mail/user already exists! Do you want to login?",
       });
     } catch (error) {
       throw Error(`Error while registering a new user : ${error}`);
