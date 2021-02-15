@@ -1,0 +1,35 @@
+const Event = require("../models/Event");
+
+module.exports = {
+  async getEventById(req, res) {
+    const { eventId } = req.params;
+    console.log(req.params);
+
+    try {
+      const event = await Event.findById(eventId);
+
+      if (event) {
+        return res.json(event);
+      }
+    } catch (error) {
+      return res.status(400).json({ message: "EventId does not exist" });
+    }
+  },
+
+  async getAllEvents(req, res) {
+    const { sport } = req.params;
+    const query = { sport } || {};
+
+    console.log(req.params);
+
+    try {
+      const events = await Event.find(query);
+
+      if (events) {
+        return res.json(events);
+      }
+    } catch (error) {
+      return res.status(400).json({ message: "No Events were found" });
+    }
+  },
+};
