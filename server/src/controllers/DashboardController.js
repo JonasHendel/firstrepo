@@ -18,7 +18,7 @@ module.exports = {
 
   async getAllEvents(req, res) {
     const { sport } = req.params;
-    const query = { sport } || {};
+    const query = sport ? { sport } : {};
 
     console.log(req.params);
 
