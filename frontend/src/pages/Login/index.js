@@ -48,7 +48,10 @@ export default function Login({ history }) {
                     <Input type="password" name="password" id="password" placeholder="Your password" onChange={evt => setPassword(evt.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button>Submit</Button>
+                    <Button className="submit-btn">Submit</Button>
+                </FormGroup>
+                <FormGroup>
+                    <Button className="secondary-btn" onClick={() => history.push("/register")}>Create new account</Button>
                 </FormGroup>
             </Form>
             {error ? (

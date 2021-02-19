@@ -3,7 +3,6 @@ const Event = require("../models/Event");
 module.exports = {
   async getEventById(req, res) {
     const { eventId } = req.params;
-    console.log(req.params);
 
     try {
       const event = await Event.findById(eventId);
@@ -19,8 +18,6 @@ module.exports = {
   async getAllEvents(req, res) {
     const { sport } = req.params;
     const query = sport ? { sport } : {};
-
-    console.log(req.params);
 
     try {
       const events = await Event.find(query);
