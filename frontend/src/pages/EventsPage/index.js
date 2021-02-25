@@ -15,7 +15,7 @@ import api from "../../services/api";
 import CameraIcon from "../../assets/camera.png";
 import "./events.css";
 
-export default function EventsPage() {
+export default function EventsPage({ history }) {
 	const user_id = localStorage.getItem("user");
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
@@ -23,7 +23,8 @@ export default function EventsPage() {
 	const [thumbnail, setThumbnail] = useState(null);
 	const [sport, setSport] = useState("");
 	const [date, setDate] = useState("");
-	const [errorMessage, setErrorMessage] = useState(false);
+    const [error, setError] = useState(false)
+    const [success, setSuccess] = useState(false)
 
 	const preview = useMemo(() => {
 		return thumbnail ? URL.createObjectURL(thumbnail) : null;
@@ -56,10 +57,14 @@ export default function EventsPage() {
 				await api.post("/event", eventData, { headers: { user_id } });
 				console.log(eventData);
 				console.log("Event has been saved");
-			} else {
-				setErrorMessage(true);
+                setSuccess(true);
 				setTimeout(() => {
-					setErrorMessage(false);
+					setSuccess(false);
+				}, 4000);
+			} else {
+				setError(true);
+				setTimeout(() => {
+					setError(false);
 				}, 4000);
 
 				console.log("Missing required data");
@@ -97,7 +102,7 @@ export default function EventsPage() {
 					</Label>
 				</FormGroup>
 				<FormGroup>
-					<Label>Sport</Label>
+
 					<Input
 						id="sport"
 						type="text"
@@ -107,7 +112,7 @@ export default function EventsPage() {
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Title: </Label>
+
 					<Input
 						id="title"
 						type="text"
@@ -117,7 +122,7 @@ export default function EventsPage() {
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Event description: </Label>
+
 					<Input
 						id="description"
 						type="text"
@@ -127,7 +132,6 @@ export default function EventsPage() {
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Event price: </Label>
 					<Input
 						id="price"
 						type="text"
@@ -137,7 +141,7 @@ export default function EventsPage() {
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label>Event date: </Label>
+
 					<Input
 						id="date"
 						type="date"
@@ -146,11 +150,23 @@ export default function EventsPage() {
 						onChange={(evt) => setDate(evt.target.value)}
 					/>
 				</FormGroup>
-				<Button type="submit">Create Event</Button>
+                <FormGroup>
+				    <Button className="main-btn">Create Event</Button>
+                </FormGroup>
+                <FormGroup>
+				    <Button className="secondary-btn" onClick={() => history.push("/")}>Cancel</Button>
+                </FormGroup>
 			</Form>
-			{errorMessage ? (
+			{error ? (
 				<Alert className="event-validation" color="danger">
 					Missing required information.
+				</Alert>
+			) : (
+				""
+			)}
+            {success ? (
+				<Alert className="event-validation" color="success">
+					Event was created.
 				</Alert>
 			) : (
 				""

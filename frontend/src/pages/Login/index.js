@@ -41,17 +41,17 @@ export default function Login({ history }) {
             <h2>Login</h2>
             <p>Please <strong>Login</strong> to your account</p>
             <Form onSubmit={handleSubmit}>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                     <Input type="email" name="email" id="email" placeholder="Your email" onChange={evt => setEmail(evt.target.value)} />
                 </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                     <Input type="password" name="password" id="password" placeholder="Your password" onChange={evt => setPassword(evt.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button className="submit-btn">Submit</Button>
+                    <Button className="main-btn">Submit</Button>
                 </FormGroup>
                 <FormGroup>
-                    <Button className="secondary-btn" onClick={() => history.push("/register")}>Create new account</Button>
+                    <Button className="main-btn" onClick={() => history.push("/register")}>Create new account</Button>
                 </FormGroup>
             </Form>
             {error ? (

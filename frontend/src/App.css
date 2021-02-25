@@ -36,17 +36,17 @@ button {
   width: 80%;
   opacity: 0.9;
   background: rgb(243, 243, 243);
-  margin-top: 50px;
+  margin-top: 40px;
   border-radius: 10px;
-  padding: 80px;
+  padding: 20;
 }
 
-.content button.submit-btn {
-  width: 96%;
-  margin-top: 10px;
+.content button.main-btn {
+  width: 100%;
   margin-bottom: 0%;
 }
 
 .content button.secondary-btn {
-  width: 96%;
+  width: 100%;
+  background: red;
 }

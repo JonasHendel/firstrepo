@@ -1,9 +1,15 @@
 import react from 'react';
+import { FormGroup } from 'reactstrap';
 
 export default function Dashboard(){
+
+    const user_id = localStorage.getItem("user")
+
+    console.log(user_id)
+
     return(
         <div>
-            Dashboard
+            Hello from Dashboard
         </div>
     )
 }
